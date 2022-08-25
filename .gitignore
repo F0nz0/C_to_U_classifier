@@ -1,0 +1,11 @@
+venv
+__pycache__
+CtoUclassifier_pipe_basecalling.sh
+CtoUclassifier_pipe_currents_extraction_step.sh
+CtoUclassifier_train_model_from_scratch.sh
+eventalign_splitter.sh
+test_data/ko_subsample.basecalling_features
+test_data/ko_subsample.model_CNN_ko_subsample_ko_subsample
+test_data/ko_subsample.model_iForestcc1_pretrained_results
+test_data/ko_subsample.T_C_reference_currents_dwells_features_reads
+iForest_pretrained_model
