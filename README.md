@@ -65,12 +65,12 @@ A)  *Basecalling Pipeline*:\
 	Then it uses a pretrained iForest anomaly detection algorithm to correct the C-to-U signal ameliorating the signal-to-noise ratio using the extracted basecalling features (central base quality, mean interval quality and discarding reads intervals with indels and/or mismatches).
 
 B) *Currents Pipeline*:\
-	This pipeline include the basecalling one since it needs basecalling features to work. 
+	This pipeline includes the basecalling one since it needs basecalling features to work. 
 	Firts of all, it extracts the currents intensities and dweel times retreived by the use of the f5c eventalign software and then, groups each position-read pair as CC, CT and TT contexts basing on Guppy data extracted from the BAM file.
 	Then, it performs a CNN-WaveNet model training on the CC and TT context reads and tries to correct the C-to-U signal classifying CT context reads as CC or TT (error-T or real-T, respectively) basing on currents features.
 
 The pipelines give back as output the results at both per-read level and genome-space aggregated level.\
-If you are interested in testing the packages on a test dataset please download at the url:
+If you are interested in testing the packages on a test dataset please download at the url (and unzip the archive):
 
 https://drive.google.com/file/d/1oayc3gttcoB7bHwuoTAshb93lWrXVCG9/view?usp=sharing
 
@@ -101,7 +101,7 @@ If your are interested in currents pipeline, there is the need for the remapping
 
 Now it is possible to launch f5c eventalign program with the following parameters (it's of pivotal importance to set all these flags):
 	
-	f5c eventalign --iop [IOP]-t [THREADS] -r [FASTQ_FILEPATH] \
+	f5c eventalign --iop [IOP] -t [THREADS] -r [FASTQ_FILEPATH] \
 		-b [BAM_FILEPATH] \
 		-g [REFERENCE_FILEPATH] \
 		--rna \
@@ -110,7 +110,7 @@ Now it is possible to launch f5c eventalign program with the following parameter
 		--samples \
 		--signal-index > [EVENTALIGN_FILEPATH]
 
-Since the output of the f5c eventaling command is huge (TB scale also for minion devices), repetitive and redundant, the C_to_classifier package has a Python script useful for collapsing events mapping on the same genome position decreasing the amount of data to be analyzed. Furthemore, this step allows for a more flexible indexing strategy of currents data at per-read level. Launch thus, the following command (to note, C_to_U_classifier scripts need for full-path of the input files in order to work finely):
+Since the output of the f5c eventalign command is huge (TB scale also for minion devices), repetitive and redundant, the C_to_classifier package has a Python script useful for collapsing events mapping on the same genome position decreasing thus the amount of data to be analyzed. Furthemore, this step allows for a more flexible indexing strategy of currents data at per-read level. Launch thus, the following command (to note, C_to_U_classifier scripts need for full-path of the input files in order to work finely):
 
 	python eventalign_splitter.py -e [EVENTALIGN_FILEPATH]-t [THREADS]
 
@@ -123,7 +123,7 @@ At this point, it is possible to choose either the basecalling or currents pipel
 		-B [BAM_FILEPATH] \
 		-R [REFERENCE_FILEPATH] \
 		-threads [THREADS] \
-		-O [ORGANISM: human OR murine]
+		-O [ORGANISM: human OR murine] # <-- used for the computation of the APOBEC1 signature with a Likelihood-ratio test
 
 The script will produce a folder with the extracted basecalling features and a folder containing the resulting iForest model correction data at both per-read and genomic-space levels.
 
@@ -134,7 +134,7 @@ The script will produce a folder with the extracted basecalling features and a f
 		-R [REFERENCE_FILEPATH] \
 		-EC [EVENTALIGN_COLLAPSED_FOLDER] \
 		-threads [THREADS] \
-		-O [ORGANISM: human OR murine]
+		-O [ORGANISM: human OR murine] # <-- used for the computation of the APOBEC1 signature with a Likelihood-ratio test
 
 After this, in addition to the basecalling pipeline related outputs, a directory named *[BAM_FILE_ROOT_NAME].T_C_reference_currents_dwells_features_reads* containg currents and dwells times features will be produced.
 The final step is to train the CNN-WaveNet model and to make prediction on CT context reads for the C-to-U signal correction:
@@ -144,6 +144,6 @@ The final step is to train the CNN-WaveNet model and to make prediction on CT co
 		-ffp [CURRENTS_DWELLS_FEATURES_DIRECTORY] \
 		-bam [BAM_FILEPATH] \
 		-ref_filepath [REFERENCE_FILEPATH] \
-		-O [ORGANISM: human OR murine]
+		-O [ORGANISM: human OR murine] # <-- used for the computation of the APOBEC1 signature with a Likelihood-ratio test
 
 Also in this case, after the training and prediction steps, a folder named *[BAM_FILE_ROOT_NAME].model_CNN_[BAM_FILE_ROOT_NAME]_[MODEL_NAME_SUFFIX]* will be produced as output containing both per-read and genome-space aggregated data for the CNN-WaveNet model.
