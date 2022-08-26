@@ -9,10 +9,10 @@ After the activation of the conda enviroment install the following softwares:
 2) f5c >= 0.7
 3) Samtools >= 1.3.1
 4) Minimap2 == 2.24
-5) Guppy == 5.0.11
+5) Guppy == 5.0.11 (please see documentation on https://community.nanoporetech.com/downloads)
 
 **Installation**:
-1) Download code from GitHub repository at the url:
+1) Download the source code from GitHub repository at the url:
         
     https://github.com/F0nz0/C_to_U_classifier
 
@@ -20,9 +20,25 @@ After the activation of the conda enviroment install the following softwares:
 		
 		tar -xf iForest_pretrained_model.tar.gz
 
-3) Create a new virtual environment (it's suggested to use and activate a base conda environment the with required softwares):
+3) Create a new virtual environment (it's suggested to create, use and activate a base conda environment with all the required software):
 
-        python3 -m venv venv
+		# create a new conda environment
+        conda create --name CtoU python=3.8
+
+		# activate the conda env
+		conda activate CtoU
+
+		# install samtools
+		conda install -c bioconda samtools
+
+		# install minimap2
+		conda install -c bioconda minimap2
+
+		# install f5c (optimised re-implementation of the call-methylation and eventalign modules in Nanopolish)
+		conda install -c bioconda f5c
+
+		# create virtual environment inside Conda CtoU env
+		python3 -m venv venv
 
 4) Activate the venv:
 	
