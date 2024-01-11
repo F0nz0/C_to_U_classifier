@@ -147,3 +147,23 @@ The final step is to train the CNN-WaveNet model and to make prediction on CT co
 		-O [ORGANISM: human OR murine] # <-- used for the computation of the APOBEC1 signature with a Likelihood-ratio test
 
 Also in this case, after the training and prediction steps, a folder named *[BAM_FILE_ROOT_NAME].model_CNN_[BAM_FILE_ROOT_NAME]_[MODEL_NAME_SUFFIX]* will be produced as output containing both per-read and genome-space aggregated data for the CNN-WaveNet model.
+
+
+**Publications**
+- Adriano Fonzino, Caterina Manzari, Paola Spadavecchia, Uday Munagala, Serena Torrini, Silvestro Conticello, Graziano Pesole & Ernesto Picardi (2024) Unraveling C-to-U RNA editing events from direct RNA sequencing, RNA Biology, 21:1, 1-14, DOI: 10.1080/15476286.2023.2290843
+
+**Usage Information**
+
+All the provided models work only for the Nanopore libraries produced by ONT SQK-RNA001 
+and SQK-RNA002 kits. Please refer to methods section on the published paper for further details.
+
+Research Purpose Only.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
