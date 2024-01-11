@@ -2,7 +2,7 @@
 
 A Machine and Deep Learning based Python package for the Nanopore noise attenuation, useful for the amelioration of C-to-U editing signal in direct-RNA sequencing experiments.
 
-**Required Softwares**:\
+## **Required Softwares**:
 C_to_U_classifiers uses internally (and not) some software that should be installed preferably into a new conda enviroment. \
 After the activation of the conda enviroment install the following softwares:
 1) Python >= 3.7
@@ -11,7 +11,7 @@ After the activation of the conda enviroment install the following softwares:
 4) Minimap2 == 2.24
 5) Guppy == 5.0.11 (please see documentation on https://community.nanoporetech.com/downloads)
 
-**Installation**:
+## **Installation**:
 1) Download the source code from GitHub repository at the url:
         
     https://github.com/F0nz0/C_to_U_classifier
@@ -56,7 +56,7 @@ After the activation of the conda enviroment install the following softwares:
 
         python -m pip install -r requirements.txt
 
-**Basic Usage**:\
+## **Basic Usage**:
 The C_to_U_classifier is able to ameliorate the C-to-U editing signal in direct-RNA Nanopore runs. 
 It does this by mean of two main pipelines:
 
@@ -117,7 +117,7 @@ Since the output of the f5c eventalign command is huge (TB scale also for minion
 Now the script should have produced a folder named as *[EVENTALIGN_FILEPATH].collapsed* containing an index file *0.collapsed_reads.idx* and a file for each contig-readname pair with currents intensity values and dwell times for every retrieved genomic coordinate.
 At this point, it is possible to choose either the basecalling or currents pipeline.
 
-**Usage of basecalling pipeline**:
+### **Usage of basecalling pipeline**:
 
 	python pipe_basecalling.py \
 		-B [BAM_FILEPATH] \
@@ -127,7 +127,7 @@ At this point, it is possible to choose either the basecalling or currents pipel
 
 The script will produce a folder with the extracted basecalling features and a folder containing the resulting iForest model correction data at both per-read and genomic-space levels.
 
-**Usage of currents pipeline**:
+### **Usage of currents pipeline**:
 
 	python pipe_currents_extraction_step.py \
 		-B [BAM_FILEPATH] \
@@ -149,10 +149,10 @@ The final step is to train the CNN-WaveNet model and to make prediction on CT co
 Also in this case, after the training and prediction steps, a folder named *[BAM_FILE_ROOT_NAME].model_CNN_[BAM_FILE_ROOT_NAME]_[MODEL_NAME_SUFFIX]* will be produced as output containing both per-read and genome-space aggregated data for the CNN-WaveNet model.
 
 
-**Publications**
+## **Publications**:
 - Adriano Fonzino, Caterina Manzari, Paola Spadavecchia, Uday Munagala, Serena Torrini, Silvestro Conticello, Graziano Pesole & Ernesto Picardi (2024) Unraveling C-to-U RNA editing events from direct RNA sequencing, RNA Biology, 21:1, 1-14, DOI: 10.1080/15476286.2023.2290843
 
-**Usage Information**
+## **Usage Information**:
 
 All the provided models work only for the Nanopore libraries produced by ONT SQK-RNA001 
 and SQK-RNA002 kits. Please refer to methods section on the published paper for further details.
