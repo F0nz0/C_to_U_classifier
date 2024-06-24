@@ -166,9 +166,9 @@ def plot_frequencies(reference_filepath,
         
         if log == True:
             plt.yscale("log")
-            yticks = plt.yticks()[0]
-            plt.ylabel(f"Log (T freq)")
-            plt.yticks(yticks, np.round(yticks-offset, 2))
+            #yticks = plt.yticks()[0]
+            #plt.ylabel(f"Log (T freq)")
+            #plt.yticks(yticks, np.round(yticks-offset, 2))
             
         
         sn.despine(offset=0.00001, trim=True, )
