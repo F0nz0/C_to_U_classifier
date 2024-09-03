@@ -19,7 +19,7 @@ def pipe_basecalling_main_function(bam_file_path, ref_path, min_depth=50, thread
                                                                 threads_n=threads_n)
 
     # define output folder path that will be the input folder path for 2nd step
-    bam_file_name = os.path.basename(bam_file_path).split(".")[0]
+    bam_file_name = os.path.splitext(os.path.basename(bam_file_path))[0]
     bam_file_base_path = os.path.join(os.path.dirname(bam_file_path), bam_file_name)
     output_folderpath = os.path.join(bam_file_base_path + ".basecalling_features")
     df_CT_native_folderpath = os.path.join(output_folderpath, bam_file_name + ".CTcontext_reads_features_forward_rev")

@@ -111,9 +111,9 @@ def T_and_C_reads_features_extractor_forward_rev(base_bam_file_path, ref_path, c
     start_time = datetime.now()
     print(f"[{datetime.now()}] [Global {chrom} thread message] Starting Processing on {chrom}", flush=True)
 
-    bam_file = pysam.AlignmentFile(f"{base_bam_file_path.split('.')[0]}.{chrom}.sorted.bam")
+    bam_file = pysam.AlignmentFile(f"{os.path.splitext(base_bam_file_path)[0]}.{chrom}.sorted.bam")
     ref = pysam.FastaFile(ref_path)
-    pos_well_covered = pd.read_table(f"{base_bam_file_path.split('.')[0]}.{chrom}.sorted.bam.depth", header=None)
+    pos_well_covered = pd.read_table(f"{os.path.splitext(base_bam_file_path)[0]}.{chrom}.sorted.bam.depth", header=None)
     pos_well_covered.columns=["contig", "pos_1_based", "depth"]
     pos_well_covered = pos_well_covered[pos_well_covered["depth"] >= min_depth]
     pos_well_covered.reset_index(inplace=True, drop=True)
@@ -296,7 +296,7 @@ def T_and_C_reads_features_extractor_forward_rev_main_functions(bam_file_path, r
     ref_path = ref_path
 
     # retrieve bam file name and bam file path without extension
-    bam_file_name = os.path.basename(bam_file_path).split(".")[0]
+    bam_file_name = os.path.splitext(os.path.basename(bam_file_path))[0]
     bam_file_base_path = os.path.join(os.path.dirname(bam_file_path), bam_file_name)
     
     # open reference file

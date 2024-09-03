@@ -60,7 +60,7 @@ def predict_CT_reads_and_sites_by_iForestcc1_model(df_CT_native_folderpath, bam_
         print(f"ERROR! Please use an available aligners among the following list: {available_aligners}", flush=True)
 
     # retrieve sample name
-    sample_name = os.path.basename(df_CT_native_folderpath).split(".")[0]
+    sample_name = os.path.splitext(os.path.basename(df_CT_native_folderpath))[0]
 
     # define output paths
     output_folderpath = os.path.join(os.path.dirname(os.path.dirname(df_CT_native_folderpath)), f"{sample_name}.model_iForest_pretrained_results")
